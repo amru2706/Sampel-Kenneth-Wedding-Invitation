@@ -1187,13 +1187,23 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // ── QR CODE ──
-new QRCode(document.getElementById('qr-canvas'), {
-  text: 'https://amru-farah.vercel.app',
-  width: 180,
-  height: 180,
-  colorDark: '#c9a96e',
-  colorLight: '#1a1209',
-  correctLevel: QRCode.CorrectLevel.H
+// ── QR CODE FINAL ──
+document.addEventListener("DOMContentLoaded", function () {
+  const qrContainer = document.getElementById("qr-canvas");
+
+  if (qrContainer) {
+    // ambil URL sekarang (termasuk ?to=nama)
+    const currentURL = window.location.href;
+
+    new QRCode(qrContainer, {
+      text: currentURL,
+      width: 180,
+      height: 180,
+      colorDark: "#c9a96e",
+      colorLight: "#0d0b07",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
 });
 
 // ── SCROLL REVEAL ──
