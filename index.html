@@ -1186,24 +1186,33 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ── QR CODE ──
+// ── DETEKSI KONFIRMASI HADIR ──
+function checkConfirmation() {
+  const params = new URLSearchParams(window.location.search);
+  const confirm = params.get('confirm');
+  const name = params.get('to');
+
+  if (confirm === 'hadir') {
+    showToast("✅ " + (name || 'Tamu') + " berhasil dikonfirmasi hadir!");
+  }
+}
+
+checkConfirmation();
+  
 // ── QR CODE FINAL ──
 document.addEventListener("DOMContentLoaded", function () {
   const qrContainer = document.getElementById("qr-canvas");
 
-  if (qrContainer) {
-    // ambil URL sekarang (termasuk ?to=nama)
-    const currentURL = window.location.href;
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('to') || 'tamu';
 
-    new QRCode(qrContainer, {
-      text: currentURL,
-      width: 180,
-      height: 180,
-      colorDark: "#c9a96e",
-      colorLight: "#0d0b07",
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  }
+  const confirmLink = window.location.origin + "/?to=" + name + "&confirm=hadir";
+
+  new QRCode(qrContainer, {
+    text: confirmLink,
+    width: 180,
+    height: 180
+  });
 });
 
 // ── SCROLL REVEAL ──
