@@ -1125,7 +1125,9 @@ function getGuestName() {
 }
 
 getGuestName();
-
+if (!name) {
+  document.getElementById('guest-name').textContent = 'Bapak/Ibu/Saudara/i';
+}
   
 // ── OPEN INVITATION ──
 function openInvitation() {
