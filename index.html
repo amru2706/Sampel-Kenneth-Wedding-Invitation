@@ -744,7 +744,8 @@
       <div class="names">Amru <span class="ampersand">&</span> Farah</div>
     </div>
   </div>
-  <p class="cover-title">Bismillahirrahmanirrahim</p>
+  <p class="cover-title">Kepada Yth:</p>
+<p id="guest-name" style="font-size:18px;color:var(--gold);margin-bottom:20px;">Tamu Undangan</p>
   <p class="cover-date">Sabtu, 11 April 2026</p>
   <button class="open-btn" onclick="openInvitation()">
     <span>✦ Buka Undangan ✦</span>
@@ -1111,6 +1112,21 @@
 </footer>
 
 <script>
+ // ── AMBIL NAMA TAMU DARI URL ──
+function getGuestName() {
+  const params = new URLSearchParams(window.location.search);
+  let name = params.get('to');
+
+  if (name) {
+    // decode + rapihin
+    name = decodeURIComponent(name.replace(/\+/g, ' '));
+    document.getElementById('guest-name').textContent = name;
+  }
+}
+
+getGuestName();
+
+  
 // ── OPEN INVITATION ──
 function openInvitation() {
   document.getElementById('cover').classList.add('hidden');
@@ -1171,8 +1187,9 @@ setInterval(updateCountdown, 1000);
 
 // ── QR CODE ──
 new QRCode(document.getElementById('qr-canvas'), {
-  text: 'https://wedding.rezaamira.com?id=WED-REZA-AMIRA-2025-04-12',
-  width: 180, height: 180,
+  text: 'https://amru-farah.vercel.app',
+  width: 180,
+  height: 180,
   colorDark: '#c9a96e',
   colorLight: '#1a1209',
   correctLevel: QRCode.CorrectLevel.H
