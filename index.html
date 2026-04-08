@@ -1118,16 +1118,15 @@ function getGuestName() {
   let name = params.get('to');
 
   if (name) {
-    // decode + rapihin
     name = decodeURIComponent(name.replace(/\+/g, ' '));
     document.getElementById('guest-name').textContent = name;
+  } else {
+    document.getElementById('guest-name').textContent = 'Bapak/Ibu/Saudara/i';
   }
 }
 
 getGuestName();
-if (!name) {
-  document.getElementById('guest-name').textContent = 'Bapak/Ibu/Saudara/i';
-}
+
   
 // ── OPEN INVITATION ──
 function openInvitation() {
